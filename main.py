@@ -1,4 +1,6 @@
 from bank import Account
+
+#메인
 class Bank(Account):
     def main(self):
         print("\n======Bank Menu=====")
