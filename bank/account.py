@@ -5,12 +5,27 @@ class Account():
     #계좌개설
     def makeAccount (self):
         print("======계좌개설======")
-        accountNumber = int(input("계좌번호: "))
-        accountName = input("이름: ")
-        accountMoney = int(input("예금: "))
-        self.bankAccount[accountNumber]= accountMoney
-        self.name[accountNumber]= accountName
-        print("##계좌개설을 완료하였습니다.##")
+        #계좌번호에는 음수x
+        try:
+            accountNumber = int(input("계좌번호: "))
+            if accountNumber < 0:
+                raise NotImplementedError 
+            accountName = input("이름: ") #이름 정수이면 x
+            if accountName.isdigit() == False:
+                self.name[accountNumber]= accountName
+                try:
+                    accountMoney = int(input("예금: ")) # 계좌 음수일 수x
+                    if accountMoney < 0:
+                        raise NotImplementedError()
+                    self.bankAccount[accountNumber]= accountMoney
+                    print("##계좌개설을 완료하였습니다.##")
+                    print("====================")
+                except:
+                    print("금액 입력이 올바르지 않습니다.")
+            else:
+                print("이름 입력이 올바르지 않습니다.")
+        except:
+            print("계좌번호 입력이 올바르지 않습니다.")
 
     #입금하기
     def putMoney(self):
@@ -24,20 +39,39 @@ class Account():
     #출금하기
     def pullMoney(self):
         print("======출금하기======")
-        message1 = int(input("출금하실 계좌번호를 입력해주세요: "))
-        print("계좌번호: ", message1, "/ 이름: ", self.name[message1],"/ 잔액: ", self.bankAccount[message1])
-        message2 = int(input("출금하실 금액을 입력해주세요: "))
-        if self.bankAccount[message1] < message2:
-            print("돈이 부족합니다")
-        else:
-            self.bankAccount[message1] -= message2
-            print("계좌번호: ", message1, "/ 이름: ", self.name[message1],"/ 잔액: ", self.bankAccount[message1])
+        try:
+            message1 = int(input("출금하실 계좌번호를 입력해주세요: "))
+            if message1 in self.bankAccount.keys():
+                print("계좌이름:", self.name[message1])
+                print("게좌잔고:", self.bankAccount[message1])
+                message2 = int(input("출금하실 금액을 입력해주세요: "))
+                if self.bankAccount[message1] < message2: #돈 초과해서x
+                    print("돈이 부족합니다")
+                elif message2 < 0: #음수 금액x
+                    print("금액 입력이 올바르지 않습니다.")
+                else:
+                    self.bankAccount[message1] -= message2
+                    print('\n##계좌잔고: ', self.bankAccount[message1], "원##") 
+                    print("##출금이 완료되었습니다##")
+                    print("====================")
+            else: # dictiomary에 존재하지 않는 계좌번호
+                print("해당 계좌가 존재하지 않습니다.")
+        except: 
+            print("\n===잘못된 계좌번호 입니다.===")
 
     #전체조회
     def searchAll(self):
         for i in self.bankAccount:
             print("계좌번호: ", i, "/ 이름: ", self.name[i],"/ 잔액: ", self.bankAccount[i])
     
+    def endAccount(self):
+        print("이용해주셔서 감사합니다!")
+        print("======종료하시려면 1번 / 처음으로 돌아가시려면 0번을 입력해주세요 ======")
+        
+
+
+
+        
 
 
 

@@ -1,6 +1,4 @@
 from bank import Account
-
-#메인
 class Bank(Account):
     def main(self):
         print("\n======Bank Menu=====")
@@ -22,6 +20,7 @@ while True:
     elif menu == 4:
         person.searchAll()
     elif menu == 5:
+        person.endAccount()
         break
     else:
         print("잘못 입력하셨습니다.")
