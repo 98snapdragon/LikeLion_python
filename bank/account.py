@@ -66,8 +66,9 @@ class Account():
     
     def endAccount(self):
         print("이용해주셔서 감사합니다!")
-        print("======종료하시려면 1번 / 처음으로 돌아가시려면 0번을 입력해주세요 ======")
         
+        
+              
 
 
 
