@@ -3,7 +3,7 @@ class Account():
     name = {} #계좌번호, 이름
 
     #계좌개설
-    def makeAccount (self):
+    def makeAccount (self):        
         print("======계좌개설======")
         #계좌번호에는 음수x
         try:
@@ -66,13 +66,7 @@ class Account():
     
     def endAccount(self):
         print("이용해주셔서 감사합니다!")
-        
-        
-              
-
-
-
-        
+    
 
 
 
